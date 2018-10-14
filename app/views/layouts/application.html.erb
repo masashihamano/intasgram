@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Techgram</title>
+    <%= csrf_meta_tags %>
+
+    <!-- この1行追加 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+<!-- ==========追加========== -->
+    <%= render 'partial/navbar' if current_user %>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-info">
+        <p><%=flash[:notice] %></p>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <p><%= flash[:alert] %></p>
+    </div>
+    <% end %>
+    <div class="wrap">
+      <div class="push">
+        <div class="container">
+
+    <%= yield %>
+
+      </div>
+    </div>
+  </div>
+  <%= render 'partial/footer' %>
+  </body>
+</html>
